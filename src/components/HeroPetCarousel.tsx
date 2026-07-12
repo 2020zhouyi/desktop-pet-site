@@ -26,13 +26,6 @@ export function HeroPetCarousel({ pets }: { pets: SitePet[] }) {
   const timerRef = useRef<number | null>(null);
   const activePet = heroPets[activeIndex] ?? heroPets[0];
 
-  useEffect(() => {
-    heroPets.forEach((pet) => {
-      const image = new Image();
-      image.src = pet.spriteUrl;
-    });
-  }, [heroPets]);
-
   useEffect(() => () => {
     if (timerRef.current !== null) window.clearTimeout(timerRef.current);
   }, []);
@@ -75,7 +68,7 @@ export function HeroPetCarousel({ pets }: { pets: SitePet[] }) {
             key={pet.id}
             aria-hidden={index !== activeIndex}
           >
-            <PetSprite pet={pet} />
+            <PetSprite pet={pet} priority={index === activeIndex} staticOnly={index !== activeIndex} />
           </div>
         ))}
       </div>

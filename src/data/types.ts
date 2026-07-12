@@ -3,6 +3,7 @@ export type SitePet = {
   displayName: string;
   description: string;
   spriteUrl: string;
+  posterUrl: string;
   downloadUrl: string;
   stateRow: number;
   category: "sects" | "players" | "bosses";

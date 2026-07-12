@@ -24,11 +24,13 @@ npm run prepare-assets
 
 它会从 `../desktop-pet-mvp/pets`：
 
-- 生成网站使用的轻量待机预览；
+- 生成网站使用的待机动画预览和轻量首帧；
 - 在 `public/generated/pet-packages/` 生成完整角色 ZIP；
 - 保留原始 `pet.json` 和完整 `1536 × 1872` spritesheet，解压后可以复制到桌宠用户宠物目录。
 
 同时会从 `../desktop-pet-mvp/release` 读取桌宠安装包元数据。
+
+页面首屏只立即加载当前角色的完整待机动画，其余角色先使用首帧；图鉴动画会在接近视口时加载，并在离开视口后暂停。
 
 生产构建直接使用仓库中已经生成的资源，不依赖相邻的桌宠项目：
 

@@ -7,6 +7,7 @@
     "prepare-assets": "node scripts/prepare-assets.mjs",
     "predev": "npm run prepare-assets",
     "dev": "vite --host 127.0.0.1",
+    "test:performance": "node tests/performance-budget.test.mjs",
     "build": "tsc --noEmit && vite build",
     "build:refresh-assets": "npm run prepare-assets && npm run build",
     "preview": "vite preview --host 127.0.0.1"

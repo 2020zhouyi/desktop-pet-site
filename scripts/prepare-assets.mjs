@@ -48,8 +48,10 @@ for (const id of petIds) {
   const manifest = JSON.parse(rawManifest);
   const sourceSprite = path.join(petsRoot, id, manifest.spritesheetPath);
   const spriteName = `${id}.webp`;
+  const posterName = `${id}-poster.webp`;
   const targetSprite = path.join(generatedPetsDir, spriteName);
-  await writeIdlePreview(sourceSprite, targetSprite);
+  const targetPoster = path.join(generatedPetsDir, posterName);
+  await writeIdlePreview(sourceSprite, targetSprite, targetPoster);
   const packageName = `${id}.zip`;
   const targetPackage = path.join(generatedPetPackagesDir, packageName);
 
@@ -62,6 +64,7 @@ for (const id of petIds) {
     displayName: manifest.displayName,
     description: compactDescription(manifest.description),
     spriteUrl: `generated/pets/${spriteName}`,
+    posterUrl: `generated/pets/${posterName}`,
     downloadUrl: `generated/pet-packages/${packageName}`,
     stateRow: 0,
     category,
@@ -94,6 +97,7 @@ await writeFile(
     "export const featuredPets: SitePet[] = generatedPets.map((pet) => ({",
     "  ...pet,",
     "  spriteUrl: `${basePath}${pet.spriteUrl}`,",
+    "  posterUrl: `${basePath}${pet.posterUrl}`,",
     "  downloadUrl: `${basePath}${pet.downloadUrl}`,",
     "}));",
     "",
@@ -138,19 +142,21 @@ function sortPetIds(a, b) {
   return a.localeCompare(b);
 }
 
-async function writeIdlePreview(sourcePath, targetPath) {
+async function writeIdlePreview(sourcePath, targetPath, posterPath) {
   await execFileAsync("python3", [
     "-c",
     [
       "from PIL import Image",
       "import sys",
-      "source, target = sys.argv[1], sys.argv[2]",
+      "source, target, poster = sys.argv[1], sys.argv[2], sys.argv[3]",
       "image = Image.open(source).convert('RGBA')",
       "idle = image.crop((0, 0, min(1536, image.width), min(208, image.height)))",
       "idle.save(target, 'WEBP', lossless=True, method=6)",
+      "idle.crop((0, 0, min(192, idle.width), min(208, idle.height))).save(poster, 'WEBP', lossless=True, method=6)",
     ].join("\n"),
     sourcePath,
     targetPath,
+    posterPath,
   ]);
 }
 
