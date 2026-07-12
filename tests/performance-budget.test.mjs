@@ -7,6 +7,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const heroSource = await readFile(path.join(root, "src/components/HeroPetCarousel.tsx"), "utf8");
 const spriteSource = await readFile(path.join(root, "src/components/PetSprite.tsx"), "utf8");
 const styles = await readFile(path.join(root, "src/styles.css"), "utf8");
+const generatedPetsSource = await readFile(path.join(root, "src/data/pets.generated.ts"), "utf8");
 
 assert.doesNotMatch(heroSource, /heroPets\.forEach\s*\(/u, "hero must not eagerly preload every animated sprite");
 assert.match(heroSource, /staticOnly=\{index !== activeIndex\}/u, "inactive hero pets must use static posters");
@@ -17,21 +18,18 @@ assert.match(styles, /animation-play-state:\s*paused/u, "offscreen sprite animat
 
 const posterRoot = path.join(root, "public/generated/pets");
 const posterNames = (await readdir(posterRoot)).filter((name) => name.endsWith("-poster.webp"));
-assert.equal(posterNames.length, 30, "every pet must have one lightweight poster");
+const generatedPetCount = [...generatedPetsSource.matchAll(/"posterUrl":/gu)].length;
+assert.equal(posterNames.length, generatedPetCount, "every generated pet must have one lightweight poster");
 
 const posterBytes = (await Promise.all(
   posterNames.map(async (name) => (await stat(path.join(posterRoot, name))).size),
 )).reduce((total, size) => total + size, 0);
 assert.ok(posterBytes <= 1_500_000, `poster budget exceeded: ${posterBytes} bytes`);
 
-const heroAssetNames = [
-  "player-01.webp",
-  "player-01-poster.webp",
-  "player-02-poster.webp",
-  "boss-04-poster.webp",
-  "player-04-poster.webp",
-  "jx3-u4e03-u79c0-01-poster.webp",
-];
+const heroIdsSource = heroSource.match(/const HERO_PET_IDS = \[([\s\S]*?)\];/u)?.[1] ?? "";
+const heroIds = [...heroIdsSource.matchAll(/"([^"]+)"/gu)].map((match) => match[1]);
+assert.equal(heroIds.length, 5, "hero must declare five current pets");
+const heroAssetNames = [`${heroIds[0]}.webp`, ...heroIds.map((id) => `${id}-poster.webp`)];
 const heroBytes = (await Promise.all(
   heroAssetNames.map(async (name) => (await stat(path.join(posterRoot, name))).size),
 )).reduce((total, size) => total + size, 0);

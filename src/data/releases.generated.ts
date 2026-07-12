@@ -3,27 +3,15 @@ import type { ReleaseAsset } from "./types";
 export const releaseAssets: ReleaseAsset[] =
 [
   {
-    "fileName": "Desktop Pet MVP-0.1.2-mac-arm64.dmg",
+    "fileName": "Desktop Pet MVP-0.1.3-mac-arm64.dmg",
     "kind": "macos",
-    "sizeMb": 163.4,
+    "sizeMb": 152.1,
     "publicPath": ""
   },
   {
-    "fileName": "Desktop Pet MVP-0.1.2-mac-arm64.zip",
-    "kind": "macos",
-    "sizeMb": 160.3,
-    "publicPath": ""
-  },
-  {
-    "fileName": "Desktop Pet MVP-0.1.2-win-x64.exe",
+    "fileName": "Desktop Pet MVP-0.1.3-win-x64.zip",
     "kind": "windows",
-    "sizeMb": 153.4,
-    "publicPath": ""
-  },
-  {
-    "fileName": "Desktop Pet MVP-0.1.2-win-x64.zip",
-    "kind": "windows",
-    "sizeMb": 185.3,
+    "sizeMb": 174.1,
     "publicPath": ""
   }
 ]

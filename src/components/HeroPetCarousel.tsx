@@ -4,11 +4,11 @@ import type { SitePet } from "../data/types";
 import { cleanPetName, PetSprite } from "./PetSprite";
 
 const HERO_PET_IDS = [
-  "player-01",
-  "player-02",
-  "boss-04",
-  "player-04",
   "jx3-u4e03-u79c0-01",
+  "jx3-u4e07-u82b1-01",
+  "boss-04",
+  "jx3-u5929-u7b56-01",
+  "jx3-u9738-u5200-01",
 ];
 const HERO_TRANSITION_MS = 650;
 type Direction = "next" | "prev";

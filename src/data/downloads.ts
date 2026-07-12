@@ -10,8 +10,8 @@ type DownloadTarget = {
 
 const configuredMacUrl = import.meta.env.VITE_DESKTOP_PET_MAC_URL ?? "";
 const configuredWindowsUrl = import.meta.env.VITE_DESKTOP_PET_WINDOWS_URL ?? "";
-const defaultMacUrl = "https://github.com/2020zhouyi/desktop-pet/releases/download/v0.1.2/Desktop.Pet.MVP-0.1.2-mac-arm64.dmg";
-const defaultWindowsUrl = "https://github.com/2020zhouyi/desktop-pet/releases/download/v0.1.2/Desktop.Pet.MVP-0.1.2-win-x64.zip";
+const defaultMacUrl = "https://github.com/2020zhouyi/desktop-pet/releases/download/v0.1.3/Desktop.Pet.MVP-0.1.3-mac-arm64.dmg";
+const defaultWindowsUrl = "https://github.com/2020zhouyi/desktop-pet/releases/download/v0.1.3/Desktop.Pet.MVP-0.1.3-win-x64.zip";
 
 const localMacRecord = releaseAssets.find((asset) => asset.kind === "macos" && asset.fileName.endsWith(".dmg"));
 const localMacAsset = releaseAssets.find(

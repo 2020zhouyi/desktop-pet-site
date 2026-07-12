@@ -54,7 +54,7 @@ export function UserGuideDialog() {
               <div className="guide-platforms">
                 <article>
                   <strong>macOS</strong>
-                  <p>下载 DMG 或 mac-arm64 ZIP。打开 DMG 后将应用拖入“应用程序”，再启动桌宠。</p>
+                  <p>下载 mac-arm64 DMG。打开后将应用拖入“应用程序”，再启动桌宠。</p>
                   <p>当前版本未进行 Apple 签名和公证。如果系统阻止启动，请前往“系统设置 → 隐私与安全性”，确认仍要打开。</p>
                 </article>
                 <article>

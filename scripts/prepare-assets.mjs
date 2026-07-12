@@ -226,9 +226,9 @@ async function extractPetTheme(spritePath, override) {
 async function scanReleases() {
   try {
     const entries = await readdir(releaseRoot);
-    const releaseFiles = entries.filter((entry) => {
-      return /\.(dmg|exe|zip)$/i.test(entry) && !entry.endsWith(".blockmap");
-    });
+    const releaseFiles = entries.filter((entry) => (
+      /-mac-arm64\.dmg$/i.test(entry) || /-win-x64\.zip$/i.test(entry)
+    ));
 
     const shouldCopy = process.env.DESKTOP_PET_SITE_COPY_RELEASE === "1";
     if (shouldCopy) {
