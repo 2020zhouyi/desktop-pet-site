@@ -136,6 +136,11 @@ h1 span { display: block; }.hero-description { color: color-mix(in srgb, var(--h
 :focus-visible { outline: 3px solid rgb(180 59 46 / 34%); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.pet-sprite { animation: none; }*,*::before,*::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 
+@media (min-width: 1025px) {
+  .pixel-hero,
+  .pixel-hero-content { min-height: min(calc(100svh - 64px), 780px); }
+}
+
 @media (max-width: 1024px) {
   .pixel-ghost { font-size: clamp(82px, 15vw, 150px); top: 12%; }.hero-copy { bottom: auto; left: 40px; top: 56px; }.hero-pet--center { bottom: 8%; left: 59%; transform: translateX(-50%) scale(1.33); }.hero-pet--left { bottom: 9%; left: 34%; transform: translateX(-50%) scale(.77); }.hero-pet--right { bottom: 9%; left: 83%; transform: translateX(-50%) scale(.77); }.hero-pet--far-left { bottom: 19%; left: 17%; transform: translateX(-50%) scale(.5); }.hero-pet--far-right { bottom: 19%; left: 96%; transform: translateX(-50%) scale(.5); }.hero-carousel-meta { bottom: auto; right: 40px; top: 24px; }.pet-layer { grid-template-columns: repeat(4, minmax(0,1fr)); }.pet-stage-stack { min-height: 658px; }.download-layout { grid-template-columns: 1fr; }
 }
