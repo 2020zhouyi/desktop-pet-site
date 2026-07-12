@@ -48,7 +48,7 @@ npm run build:refresh-assets
 
 ```sh
 VITE_DESKTOP_PET_MAC_URL=https://example.com/DesktopPet.dmg
-VITE_DESKTOP_PET_WINDOWS_URL=https://example.com/DesktopPet.zip
+VITE_DESKTOP_PET_WINDOWS_URL=https://example.com/DesktopPet.exe
 ```
 
 本地预览如需临时把 release 复制到 `public/generated/downloads/`：

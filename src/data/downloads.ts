@@ -10,8 +10,8 @@ type DownloadTarget = {
 
 const configuredMacUrl = import.meta.env.VITE_DESKTOP_PET_MAC_URL ?? "";
 const configuredWindowsUrl = import.meta.env.VITE_DESKTOP_PET_WINDOWS_URL ?? "";
-const defaultMacUrl = "https://github.com/2020zhouyi/desktop-pet/releases/download/v0.1.0-20260712/Desktop.Pet.MVP-0.1.0-mac-arm64.dmg";
-const defaultWindowsUrl = "https://github.com/2020zhouyi/desktop-pet/releases/download/v0.1.0-20260712/Desktop.Pet.MVP-0.1.0-win-x64.zip";
+const defaultMacUrl = "https://github.com/2020zhouyi/desktop-pet/releases/download/v0.1.1/Desktop.Pet.MVP-0.1.1-mac-arm64.dmg";
+const defaultWindowsUrl = "https://github.com/2020zhouyi/desktop-pet/releases/download/v0.1.1/Desktop.Pet.MVP-0.1.1-win-x64.exe";
 
 const localMacRecord = releaseAssets.find((asset) => asset.kind === "macos");
 const localMacAsset = releaseAssets.find((asset) => asset.kind === "macos" && asset.publicPath);
@@ -30,7 +30,7 @@ export const downloadTargets: DownloadTarget[] = [
   },
   {
     label: "Windows",
-    detail: "已有实验构建，仍需更多透明窗口兼容验证",
+    detail: "Windows x64 安装程序，安装完成后直接启动",
     href: configuredWindowsUrl || localWindowsAsset?.publicPath || defaultWindowsUrl,
     status: "available",
     asset: localWindowsRecord?.fileName,

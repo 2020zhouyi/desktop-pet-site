@@ -221,7 +221,7 @@ async function scanReleases() {
   try {
     const entries = await readdir(releaseRoot);
     const releaseFiles = entries.filter((entry) => {
-      return /\.(dmg|zip)$/i.test(entry) && !entry.endsWith(".blockmap");
+      return /\.(dmg|exe|zip)$/i.test(entry) && !entry.endsWith(".blockmap");
     });
 
     const shouldCopy = process.env.DESKTOP_PET_SITE_COPY_RELEASE === "1";
