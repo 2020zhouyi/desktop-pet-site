@@ -179,7 +179,7 @@ function DownloadSection() {
           {targets.map((target) => (
             <article key={target.label}>
               <Monitor size={25} />
-              <div><h3>{target.label}</h3><p>{target.label === "macOS" ? "DMG · Apple Silicon" : "EXE · Windows x64"}</p></div>
+              <div><h3>{target.label}</h3><p>{target.label === "macOS" ? "DMG · Apple Silicon" : "ZIP · Windows x64"}</p></div>
               {target.href ? <a href={target.href}>立即下载<ChevronRight size={16} /></a> : <span>准备中</span>}
             </article>
           ))}
