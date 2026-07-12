@@ -44,7 +44,7 @@ npm run build:refresh-assets
 
 ## Downloads
 
-默认不会把 release 大包复制进站点源码。公开下载链接用环境变量配置：
+桌宠安装包默认链接到 `desktop-pet` 仓库的公开 GitHub Release。也可以用环境变量临时覆盖：
 
 ```sh
 VITE_DESKTOP_PET_MAC_URL=https://example.com/DesktopPet.dmg

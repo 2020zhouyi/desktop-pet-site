@@ -85,9 +85,17 @@ await writeFile(
   [
     "import type { SitePet } from \"./types\";",
     "",
-    "export const featuredPets: SitePet[] =",
+    "const generatedPets: SitePet[] =",
     JSON.stringify(pets, null, 2),
     ";",
+    "",
+    "const basePath = import.meta.env.BASE_URL;",
+    "",
+    "export const featuredPets: SitePet[] = generatedPets.map((pet) => ({",
+    "  ...pet,",
+    "  spriteUrl: `${basePath}${pet.spriteUrl}`,",
+    "  downloadUrl: `${basePath}${pet.downloadUrl}`,",
+    "}));",
     "",
   ].join("\n"),
 );

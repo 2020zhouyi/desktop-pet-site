@@ -1,6 +1,6 @@
 import type { SitePet } from "./types";
 
-export const featuredPets: SitePet[] =
+const generatedPets: SitePet[] =
 [
   {
     "id": "boss-01",
@@ -484,3 +484,11 @@ export const featuredPets: SitePet[] =
   }
 ]
 ;
+
+const basePath = import.meta.env.BASE_URL;
+
+export const featuredPets: SitePet[] = generatedPets.map((pet) => ({
+  ...pet,
+  spriteUrl: `${basePath}${pet.spriteUrl}`,
+  downloadUrl: `${basePath}${pet.downloadUrl}`,
+}));
