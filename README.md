@@ -16,21 +16,25 @@ npm install
 npm run dev
 ```
 
-本地开发启动前会自动运行：
+站点使用仓库内固定的 30 个角色资源快照，本地开发不会自动读取或同步相邻桌宠项目：
 
 ```sh
-npm run prepare-assets
+npm run dev
 ```
 
-它会从 `../desktop-pet-mvp/pets`：
+只有明确需要用桌宠项目替换站点快照时，才手动运行：
 
-- 生成网站使用的待机动画预览和轻量首帧；
+```sh
+npm run sync-assets-from-desktop
+```
+
+这个命令会从 `../desktop-pet-mvp/pets`：
+
+- 生成网站使用的待机动画预览；
 - 在 `public/generated/pet-packages/` 生成完整角色 ZIP；
 - 保留原始 `pet.json` 和完整 `1536 × 1872` spritesheet，解压后可以复制到桌宠用户宠物目录。
 
 同时会从 `../desktop-pet-mvp/release` 读取桌宠安装包元数据。
-
-页面首屏只立即加载当前角色的完整待机动画，其余角色先使用首帧；图鉴动画会在接近视口时加载，并在离开视口后暂停。
 
 生产构建直接使用仓库中已经生成的资源，不依赖相邻的桌宠项目：
 
@@ -56,7 +60,7 @@ VITE_DESKTOP_PET_WINDOWS_URL=https://example.com/DesktopPet.zip
 本地预览如需临时把 release 复制到 `public/generated/downloads/`：
 
 ```sh
-DESKTOP_PET_SITE_COPY_RELEASE=1 npm run prepare-assets
+DESKTOP_PET_SITE_COPY_RELEASE=1 npm run sync-assets-from-desktop
 ```
 
 这个目录已被 `.gitignore` 忽略，避免误提交大体积安装包。

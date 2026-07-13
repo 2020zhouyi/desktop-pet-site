@@ -4,12 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare-assets": "node scripts/prepare-assets.mjs",
-    "predev": "npm run prepare-assets",
+    "sync-assets-from-desktop": "node scripts/prepare-assets.mjs",
     "dev": "vite --host 127.0.0.1",
-    "test:performance": "node tests/performance-budget.test.mjs",
+    "test:site-resources": "node tests/site-resource-snapshot.test.mjs",
     "build": "tsc --noEmit && vite build",
-    "build:refresh-assets": "npm run prepare-assets && npm run build",
+    "build:refresh-assets": "npm run sync-assets-from-desktop && npm run build",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify site resource snapshot
+        run: npm run test:site-resources
+
       - name: Build
         env:
           VITE_BASE_PATH: /desktop-pet-site/

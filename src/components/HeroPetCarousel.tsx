@@ -4,11 +4,11 @@ import type { SitePet } from "../data/types";
 import { cleanPetName, PetSprite } from "./PetSprite";
 
 const HERO_PET_IDS = [
-  "jx3-u4e03-u79c0-01",
-  "jx3-u4e07-u82b1-01",
+  "player-01",
+  "player-02",
   "boss-04",
-  "jx3-u5929-u7b56-01",
-  "jx3-u9738-u5200-01",
+  "player-04",
+  "jx3-u4e03-u79c0-01",
 ];
 const HERO_TRANSITION_MS = 650;
 type Direction = "next" | "prev";
@@ -25,6 +25,13 @@ export function HeroPetCarousel({ pets }: { pets: SitePet[] }) {
   const [isAnimating, setIsAnimating] = useState(false);
   const timerRef = useRef<number | null>(null);
   const activePet = heroPets[activeIndex] ?? heroPets[0];
+
+  useEffect(() => {
+    heroPets.forEach((pet) => {
+      const image = new Image();
+      image.src = pet.spriteUrl;
+    });
+  }, [heroPets]);
 
   useEffect(() => () => {
     if (timerRef.current !== null) window.clearTimeout(timerRef.current);
@@ -68,7 +75,7 @@ export function HeroPetCarousel({ pets }: { pets: SitePet[] }) {
             key={pet.id}
             aria-hidden={index !== activeIndex}
           >
-            <PetSprite pet={pet} priority={index === activeIndex} staticOnly={index !== activeIndex} />
+            <PetSprite pet={pet} />
           </div>
         ))}
       </div>
