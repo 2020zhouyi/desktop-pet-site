@@ -27,7 +27,7 @@ const localWindowsAsset = releaseAssets.find(
 export const downloadTargets: DownloadTarget[] = [
   {
     label: "macOS",
-    detail: "Apple Silicon / Intel，当前主验证平台",
+    detail: "Apple Silicon（arm64），当前主验证平台",
     href: configuredMacUrl || localMacAsset?.publicPath || defaultMacUrl,
     status: "available",
     asset: localMacRecord?.fileName,
